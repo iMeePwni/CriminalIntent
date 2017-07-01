@@ -1,7 +1,7 @@
 package com.imeepwni.android.criminalintent.view.main
 
-import android.app.*
 import android.os.*
+import android.support.v4.app.*
 import android.text.*
 import android.view.*
 import android.widget.*
