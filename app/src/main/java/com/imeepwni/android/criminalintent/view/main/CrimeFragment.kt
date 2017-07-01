@@ -27,15 +27,15 @@ class CrimeFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                CrimeRepository.crime.title = p0.toString()
+                CrimeRepository.currentCrime.title = p0.toString()
             }
         })
         crime_date.run {
-            text = CrimeRepository.crime.date.toString()
+            text = CrimeRepository.currentCrime.date.toString()
             isEnabled = false
         }
         crime_solved.setOnCheckedChangeListener { _, isChecked ->
-            CrimeRepository.crime.isSolved = isChecked
+            CrimeRepository.currentCrime.isSolved = isChecked
         }
     }
 
