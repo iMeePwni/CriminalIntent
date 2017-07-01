@@ -1,6 +1,5 @@
 package com.imeepwni.android.criminalintent.view.main
 
-
 import android.os.*
 import android.support.v4.app.*
 import android.support.v7.widget.*
@@ -31,5 +30,4 @@ class CrimeListFragment : Fragment() {
             adapter = CrimeAdapter(activity)
         }
     }
-
 }
