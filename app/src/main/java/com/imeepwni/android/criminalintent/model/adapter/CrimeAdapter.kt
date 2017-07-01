@@ -3,6 +3,7 @@ package com.imeepwni.android.criminalintent.model.adapter
 import android.content.*
 import android.support.design.widget.*
 import android.support.v7.widget.*
+import android.text.format.*
 import android.view.*
 import com.imeepwni.android.criminalintent.*
 import com.imeepwni.android.criminalintent.model.data.*
@@ -36,8 +37,8 @@ class CrimeAdapter(val context: Context)
             itemView.run {
                 tag = crime
                 crime_title.text = crime.title
-                crime_date.text = crime.date.toString()
-                is_solved_image_view.visibility = if (crime.isSolved) View.VISIBLE else View.INVISIBLE
+                crime_date.text = DateFormat.format("EEE, MMM d日, yyyy",crime.date)
+                crime_solved.visibility = if (crime.isSolved) View.VISIBLE else View.INVISIBLE
                 setOnClickListener(this@CrimeAdapter)
             }
         }

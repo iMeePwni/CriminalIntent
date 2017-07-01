@@ -32,7 +32,7 @@
         tools:text="Crime Date"/>
 
     <ImageView
-        android:id="@+id/is_solved_image_view"
+        android:id="@+id/crime_solved"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
