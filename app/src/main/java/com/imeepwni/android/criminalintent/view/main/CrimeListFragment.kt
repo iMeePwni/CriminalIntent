@@ -30,4 +30,9 @@ class CrimeListFragment : Fragment() {
             adapter = CrimeAdapter(activity)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        crime_recycler_view.adapter.notifyDataSetChanged()
+    }
 }
