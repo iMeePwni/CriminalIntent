@@ -1,6 +1,7 @@
 package com.imeepwni.android.criminalintent.model.repository
 
 import com.imeepwni.android.criminalintent.model.data.*
+import java.util.*
 
 /**
  * Create by guofeng on 2017/6/30.
@@ -8,7 +9,6 @@ import com.imeepwni.android.criminalintent.model.data.*
 object CrimeRepository {
 
     val crimes = initCrimeLab()
-    var currentCrime = crimes[0]
 
     fun initCrimeLab(): ArrayList<Crime> {
         val arrayList = arrayListOf<Crime>()
@@ -16,5 +16,5 @@ object CrimeRepository {
         return arrayList
     }
 
-    // TODO 获得特定Crime
+    fun getCrime(id: UUID) = crimes.filter { it.id==id }.first()
 }
