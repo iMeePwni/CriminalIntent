@@ -9,6 +9,7 @@ import java.util.*
 object CrimeRepository {
 
     val crimes = initCrimeLab()
+    var currentCrimeId = 0
 
     fun initCrimeLab(): ArrayList<Crime> {
         val arrayList = arrayListOf<Crime>()

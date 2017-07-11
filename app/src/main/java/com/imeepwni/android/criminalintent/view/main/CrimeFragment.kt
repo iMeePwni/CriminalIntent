@@ -1,7 +1,9 @@
 package com.imeepwni.android.criminalintent.view.main
 
+import android.app.*
 import android.os.*
 import android.support.v4.app.*
+import android.support.v4.app.Fragment
 import android.text.*
 import android.view.*
 import com.imeepwni.android.criminalintent.*
@@ -43,6 +45,7 @@ class CrimeFragment : Fragment() {
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     crime.title = p0.toString()
+                    activity.setResult(Activity.RESULT_OK)
                 }
             })
         }
@@ -54,6 +57,7 @@ class CrimeFragment : Fragment() {
             isChecked = crime.isSolved
             setOnCheckedChangeListener { _, isChecked ->
                 crime.isSolved = isChecked
+                activity.setResult(Activity.RESULT_OK)
             }
         }
     }
