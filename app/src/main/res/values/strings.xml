@@ -6,4 +6,6 @@
     <string name="crime_solved_label">Solved</string>
 
     <string name="call_police">我要报警！！！</string>
+    <string name="jump_to_first">第一个</string>
+    <string name="jump_to_last">最后一个</string>
 </resources>

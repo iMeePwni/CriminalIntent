@@ -23,7 +23,7 @@ class CrimeListFragment : Fragment(),
     }
 
     override fun onClick(view: View) {
-        startActivityForResult(Intent(this.activity, CrimeActivity::class.java)
+        startActivityForResult(Intent(this.activity, CrimePagerActivity::class.java)
                 .putExtra(Crime.CRIME_ID, (view.tag as Crime).id),
                 1)
         CrimeRepository.currentCrimeId = crime_recycler_view.getChildAdapterPosition(view)
