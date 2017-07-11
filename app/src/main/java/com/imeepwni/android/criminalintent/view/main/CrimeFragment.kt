@@ -1,6 +1,7 @@
 package com.imeepwni.android.criminalintent.view.main
 
 import android.app.*
+import android.content.*
 import android.os.*
 import android.support.v4.app.Fragment
 import android.text.*
@@ -15,6 +16,8 @@ class CrimeFragment : Fragment() {
 
     companion object {
         val DIALOG_DATE = "DialogDate"
+        val DIALOG_TIME = "DialogTime"
+        val REQUEST_DATE = 0
 
         fun newInstance(crimeId: UUID): CrimeFragment {
             val fragment = CrimeFragment()
@@ -23,6 +26,10 @@ class CrimeFragment : Fragment() {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    val crime by lazy {
+        CrimeRepository.getCrime((arguments.getSerializable(Crime.CRIME_ID) as UUID))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +43,6 @@ class CrimeFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val crime = CrimeRepository.getCrime((arguments.getSerializable(Crime.CRIME_ID) as UUID))
         crime_title.run {
             setText(crime.title)
             addTextChangedListener(object : TextWatcher {
@@ -51,10 +57,18 @@ class CrimeFragment : Fragment() {
             })
         }
         crime_date.run {
-            text = crime.date.toString()
+            updateDate(crime.date)
             setOnClickListener {
                 val datePickerFragment = DatePickerFragment.newInstance(crime.date)
+                datePickerFragment.setTargetFragment(this@CrimeFragment, REQUEST_DATE)
                 datePickerFragment.show(fragmentManager, DIALOG_DATE)
+            }
+        }
+        crime_time.run {
+            setOnClickListener {
+                val timePickerFragment = TimePickerFragment.newInstance(crime.date)
+                timePickerFragment.setTargetFragment(this@CrimeFragment, REQUEST_DATE)
+                timePickerFragment.show(fragmentManager, DIALOG_TIME)
             }
         }
         crime_solved.run {
@@ -64,5 +78,25 @@ class CrimeFragment : Fragment() {
                 activity.setResult(Activity.RESULT_OK)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (resultCode!=Activity.RESULT_OK)
+            return
+        when (requestCode) {
+            REQUEST_DATE -> {
+                val date = data.getSerializableExtra(DatePickerFragment.ARG_DATE) as Date
+                crime.date = date
+                updateDate(date)
+                activity.setResult(Activity.RESULT_OK)
+            }
+        }
+    }
+
+    /**
+     * 提取公用方法联系快捷键option + command + M
+     */
+    private fun updateDate(date: Date) {
+        crime_date.text = date.toString()
     }
 }
