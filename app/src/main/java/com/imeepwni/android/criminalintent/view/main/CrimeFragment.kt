@@ -2,7 +2,6 @@ package com.imeepwni.android.criminalintent.view.main
 
 import android.app.*
 import android.os.*
-import android.support.v4.app.*
 import android.support.v4.app.Fragment
 import android.text.*
 import android.view.*
@@ -15,6 +14,8 @@ import java.util.*
 class CrimeFragment : Fragment() {
 
     companion object {
+        val DIALOG_DATE = "DialogDate"
+
         fun newInstance(crimeId: UUID): CrimeFragment {
             val fragment = CrimeFragment()
             val bundle = Bundle()
@@ -51,7 +52,10 @@ class CrimeFragment : Fragment() {
         }
         crime_date.run {
             text = crime.date.toString()
-            isEnabled = false
+            setOnClickListener {
+                val datePickerFragment = DatePickerFragment.newInstance(crime.date)
+                datePickerFragment.show(fragmentManager, DIALOG_DATE)
+            }
         }
         crime_solved.run {
             isChecked = crime.isSolved
