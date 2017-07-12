@@ -31,9 +31,10 @@ class CrimeAdapter(val context: Context, val onClickListener: View.OnClickListen
     inner class CrimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(crime: Crime) {
             itemView.run {
-                crime_title.text = crime.title
-                crime_date.text = DateFormat.format("EEE, MMM d日, yyyy", crime.date)
-                crime_solved.visibility = if (crime.isSolved) View.VISIBLE else View.INVISIBLE
+                val (title, isSolved, date) = crime
+                crime_title.text = title
+                crime_date.text = DateFormat.format("EEE, MMM d日, yyyy", date)
+                crime_solved.visibility = if (isSolved) View.VISIBLE else View.INVISIBLE
                 tag = crime
                 setOnClickListener(onClickListener)
             }
