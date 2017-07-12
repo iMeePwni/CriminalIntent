@@ -22,6 +22,11 @@ class CrimeListFragment : Fragment(),
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onClick(view: View) {
         startActivityForResult(Intent(this.activity, CrimePagerActivity::class.java)
                 .putExtra(Crime.CRIME_ID, (view.tag as Crime).id),
@@ -41,6 +46,10 @@ class CrimeListFragment : Fragment(),
             layoutManager = LinearLayoutManager(activity)
             adapter = CrimeAdapter(activity, this@CrimeListFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.fragment_crime_list, menu)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
