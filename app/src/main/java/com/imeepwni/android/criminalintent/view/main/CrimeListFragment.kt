@@ -52,6 +52,19 @@ class CrimeListFragment : Fragment(),
         inflater.inflate(R.menu.fragment_crime_list, menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.new_crime -> {
+                val crime = Crime()
+                CrimeRepository.crimes.add(crime)
+                CrimeRepository.currentCrimeId = CrimeRepository.crimes.lastIndex
+                startActivity(Intent(this@CrimeListFragment.context, CrimePagerActivity::class.java))
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode!=Activity.RESULT_OK)
             return
