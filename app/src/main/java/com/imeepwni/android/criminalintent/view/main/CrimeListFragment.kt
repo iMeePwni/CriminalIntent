@@ -4,6 +4,7 @@ import android.app.*
 import android.content.*
 import android.os.*
 import android.support.v4.app.Fragment
+import android.support.v7.app.*
 import android.support.v7.widget.*
 import android.view.*
 import com.imeepwni.android.criminalintent.*
@@ -59,10 +60,14 @@ class CrimeListFragment : Fragment(),
                 CrimeRepository.crimes.add(crime)
                 CrimeRepository.currentCrimeId = CrimeRepository.crimes.lastIndex
                 startActivity(Intent(this@CrimeListFragment.context, CrimePagerActivity::class.java))
-                return true
+            }
+            R.id.show_subtitle -> {
+                val string = resources.getQuantityString(R.plurals.subtitle_plural, CrimeRepository.crimes.size, CrimeRepository.crimes.size)
+                (activity as AppCompatActivity).supportActionBar?.subtitle = string
             }
             else -> return super.onOptionsItemSelected(item)
         }
+        return true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
