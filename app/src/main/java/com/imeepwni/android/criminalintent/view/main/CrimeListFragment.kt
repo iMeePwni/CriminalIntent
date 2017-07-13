@@ -47,6 +47,9 @@ class CrimeListFragment : Fragment(),
             layoutManager = LinearLayoutManager(activity)
             adapter = CrimeAdapter(activity, this@CrimeListFragment)
         }
+        if (CrimeRepository.crimes.isEmpty()) {
+            crime_recycler_view.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
