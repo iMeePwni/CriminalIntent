@@ -22,14 +22,14 @@ class CrimeFragment : Fragment() {
         fun newInstance(crimeId: UUID): CrimeFragment {
             val fragment = CrimeFragment()
             val bundle = Bundle()
-            bundle.putSerializable(Crime.CRIME_ID, crimeId)
+            bundle.putSerializable(Crime.ID, crimeId)
             fragment.arguments = bundle
             return fragment
         }
     }
 
     val crime by lazy {
-        CrimeRepository.getCrime((arguments.getSerializable(Crime.CRIME_ID) as UUID))
+        CrimeRepository.getCrime((arguments.getSerializable(Crime.ID) as UUID))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -7,5 +7,5 @@ import java.util.*
 
 class CrimeActivity : SingleFragmentActivity() {
     override fun createFragment(): Fragment
-            = CrimeFragment.newInstance(intent.extras.getSerializable(Crime.CRIME_ID) as UUID)
+            = CrimeFragment.newInstance(intent.extras.getSerializable(Crime.ID) as UUID)
 }

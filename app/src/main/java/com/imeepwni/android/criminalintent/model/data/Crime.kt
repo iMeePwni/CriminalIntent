@@ -12,10 +12,13 @@ data class Crime(
         var isSolved: Boolean = false,
         var date: Date = Calendar.getInstance().time
 ) {
-    companion object {
-        val CRIME_ID = "crimeId"
-    }
-
     val id: UUID = randomUUID()
+
+    companion object {
+        val ID = "id"
+        val TITLE = "title"
+        val IS_SOLVED = "isSolved"
+        val DATE = "date"
+    }
 
 }
